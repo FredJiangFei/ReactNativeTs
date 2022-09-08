@@ -6,7 +6,11 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "eas-build-pre-install": "node pre-install.js",
+    "eas-build-post-install": "echo 456",
+    "eas-build-on-success": "echo 789",
+    "eas-build-on-error": "echo 012"
   },
   "dependencies": {
     "expo": "~46.0.9",

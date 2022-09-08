@@ -1,0 +1,55 @@
+{
+    "build": {
+        "base": {
+            "node": "12.13.0",
+            "env": {
+              "EXAMPLE_ENV": "example value"
+            },
+            "android": {
+              "image": "default",
+              "env": {
+                "PLATFORM": "android"
+              }
+            },
+            "ios": {
+              "image": "latest",
+              "env": {
+                "PLATFORM": "ios"
+              }
+            }
+        },
+      "development": {
+        "extends": "base",
+        "developmentClient": true,
+        "env": {
+            "APP_ENV": "development",
+            "API_URL": "https://test.company.com/api"
+        },
+        "ios": {
+            "simulator": true
+        },
+        "android": {
+            "distribution": "internal",
+            "withoutCredentials": true
+        }
+      },
+      "preview": {
+        "extends": "base",
+        "distribution": "internal",
+        "env": {
+            "APP_ENV": "staging",
+            "API_URL": "https://staging.company.com/api"
+        },
+        "android": {
+            "buildType": "apk"
+        }
+      },
+      "production": {
+        "extends": "base",
+        "env": {
+            "APP_ENV": "production",
+            "API_URL": "https://company.com/api"
+        }
+      }
+    }
+  }
