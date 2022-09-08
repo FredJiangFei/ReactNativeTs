@@ -8,9 +8,12 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eas-build-pre-install": "node pre-install.js",
-    "eas-build-post-install": "echo 456",
-    "eas-build-on-success": "echo 789",
-    "eas-build-on-error": "echo 012"
+    "eas-build-post-install": "echo eas build post install",
+    "eas-build-on-success": "echo eas build on success",
+    "eas-build-on-error": "echo eas build on error",
+    "eas-build-development": "eas build --profile development",
+    "eas-build-ios": "eas build --platform ios",
+    "eas-build-android": "eas build --platform android"
   },
   "dependencies": {
     "expo": "~46.0.9",
@@ -18,7 +21,8 @@
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.5",
-    "react-native-web": "~0.18.7"
+    "react-native-web": "~0.18.7",
+    "expo-dev-client": "~1.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
