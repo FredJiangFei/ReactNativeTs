@@ -3,19 +3,57 @@
     "version": ">= 2.1.0"
   },
   "build": {
+    "base": {
+      "env": {
+        "EXAMPLE_ENV": "example value"
+      }
+    },
     "development": {
+      "extends": "base",
       "developmentClient": true,
       "distribution": "internal",
+      "env": {
+        "APP_ENV": "development",
+        "API_URL": "https://test.company.com/api"
+      },
       "ios": {
         "simulator": true
+      },
+      "android": {
+        "distribution": "internal",
+        "withoutCredentials": true
       }
     },
     "preview": {
-      "distribution": "internal"
+      "extends": "base",
+      "distribution": "internal",
+      "env": {
+        "APP_ENV": "staging",
+        "API_URL": "https://staging.company.com/api"
+      },
+      "android": {
+        "buildType": "apk"
+      }
     },
-    "production": {}
+    "production": {
+      "extends": "base",
+      "env": {
+        "APP_ENV": "production",
+        "API_URL": "https://company.com/api"
+      }
+    }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "android": {
+        "serviceAccountKeyPath": "../path/to/api-xxx-yyy-zzz.json",
+        "track": "internal"
+      },
+      "ios": {
+        "appleId": "john@turtle.com",
+        "ascAppId": "1234567890",
+        "appleTeamId": "AB12XYZ34S"
+      }
+    }
   }
 }

@@ -6,17 +6,26 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "eas-build-pre-install": "node pre-install.js",
+    "eas-build-post-install": "echo eas build post install",
+    "eas-build-on-success": "echo eas build on success",
+    "eas-build-on-error": "echo eas build on error",
+    "eas-build-development": "eas build --profile development",
+    "eas-build-ios": "eas build --platform ios",
+    "eas-build-android": "eas build --platform android"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.3.3",
+    "@react-navigation/native": "^6.0.12",
     "expo": "~46.0.9",
+    "expo-dev-client": "~1.2.1",
     "expo-status-bar": "~1.4.0",
+    "expo-updates": "~0.14.5",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.5",
-    "react-native-web": "~0.18.7",
-    "expo-dev-client": "~1.2.1",
-    "expo-updates": "~0.14.5"
+    "react-native-web": "~0.18.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
