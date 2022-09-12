@@ -3,8 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import routes from './routes';
 import HomeScreen from '../screen/HomeScreen';
 import CalendarScreen from '../screen/CalendarScreen';
-import HomeSvg from '../svgs/homeSvg';
 import colors from '../config/colors';
+import { HomeSvg } from '../svgs';
+import HeaderBar from '../parts/HeaderBar/headerBar';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,6 +14,11 @@ const HomeNavigator = () => {
     <Tab.Navigator
       initialRouteName={routes.Home}
       screenOptions={{
+        headerTitle: '',
+        headerStyle: {
+          backgroundColor: colors.primary,
+        },
+        headerRight: () => <HeaderBar />,
         tabBarStyle: {
           backgroundColor: colors.primary,
         },
