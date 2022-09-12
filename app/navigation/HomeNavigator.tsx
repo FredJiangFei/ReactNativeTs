@@ -7,8 +7,8 @@ import colors from '../config/colors';
 import { HomeSvg, CalendarSvg, AchievementSvg, OrganizationSvg, TeamSvg } from '../svgs';
 import HeaderBar from '../parts/HeaderBar/headerBar';
 import AchievementScreen from '../screen/AchievementScreen';
-import OrganizationScreen from '../screen/OrganizationScreen';
 import TeamScreen from '../screen/TeamScreen';
+import OrganizationNavigator from './OrganizationNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,7 +51,7 @@ const HomeNavigator = () => {
       />
       <Tab.Screen
         name={routes.Organization}
-        component={OrganizationScreen}
+        component={OrganizationNavigator}
         options={{
           tabBarIcon: () => <OrganizationSvg />,
         }}

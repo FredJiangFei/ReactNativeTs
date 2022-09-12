@@ -3,5 +3,6 @@ export default Object.freeze({
   Calendar: 'Calendar',
   Achievement: 'Achievement',
   Organization: 'Organization',
+  OrganizationDetails: 'OrganizationDetails',
   Team: 'Team',
 });
