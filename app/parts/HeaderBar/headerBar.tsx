@@ -9,7 +9,7 @@ export default function HeaderBar() {
       <Search style={defaultStyles.mr16} />
       <Notification style={defaultStyles.mr16} />
       <Message style={defaultStyles.mr16} />
-      <Menu style={defaultStyles.mr16} />
+      <Menu />
     </View>
   );
 }

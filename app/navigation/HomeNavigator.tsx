@@ -17,11 +17,7 @@ const HomeNavigator = () => {
     <Tab.Navigator
       initialRouteName={routes.Home}
       screenOptions={{
-        headerTitle: '',
-        headerStyle: {
-          backgroundColor: colors.primary,
-        },
-        headerRight: () => <HeaderBar />,
+        headerShown: false,
         tabBarStyle: {
           backgroundColor: colors.primary,
         },
