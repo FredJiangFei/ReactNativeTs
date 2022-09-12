@@ -4,8 +4,11 @@ import routes from './routes';
 import HomeScreen from '../screen/HomeScreen';
 import CalendarScreen from '../screen/CalendarScreen';
 import colors from '../config/colors';
-import { HomeSvg } from '../svgs';
+import { HomeSvg, CalendarSvg, AchievementSvg, OrganizationSvg, TeamSvg } from '../svgs';
 import HeaderBar from '../parts/HeaderBar/headerBar';
+import AchievementScreen from '../screen/AchievementScreen';
+import OrganizationScreen from '../screen/OrganizationScreen';
+import TeamScreen from '../screen/TeamScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,7 +35,34 @@ const HomeNavigator = () => {
           tabBarIcon: () => <HomeSvg />,
         }}
       />
-      <Tab.Screen name={routes.Calendar} component={CalendarScreen} />
+      <Tab.Screen
+        name={routes.Calendar}
+        component={CalendarScreen}
+        options={{
+          tabBarIcon: () => <CalendarSvg />,
+        }}
+      />
+      <Tab.Screen
+        name={routes.Achievement}
+        component={AchievementScreen}
+        options={{
+          tabBarIcon: () => <AchievementSvg />,
+        }}
+      />
+      <Tab.Screen
+        name={routes.Organization}
+        component={OrganizationScreen}
+        options={{
+          tabBarIcon: () => <OrganizationSvg />,
+        }}
+      />
+      <Tab.Screen
+        name={routes.Team}
+        component={TeamScreen}
+        options={{
+          tabBarIcon: () => <TeamSvg />,
+        }}
+      />
     </Tab.Navigator>
   );
 };
