@@ -12,11 +12,7 @@ const PostNavigator = () => {
     <Stack.Navigator
       initialRouteName={routes.Post}
       screenOptions={{
-        headerTitle: '',
-        headerStyle: {
-          backgroundColor: colors.primary,
-        },
-        headerRight: () => <HeaderBar />,
+        headerShown: false
       }}
     >
       <Stack.Screen name={routes.Post} component={PostScreen} />

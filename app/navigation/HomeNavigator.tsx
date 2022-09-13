@@ -14,6 +14,7 @@ import PostNavigator from './PostNavigator';
 import CalendarNavigator from './CalendarNavigator';
 import AchievementNavigator from './AchievementNavigator';
 import TeamNavigator from './TeamNavigator';
+import HeaderBar from '../parts/headerBar';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,11 +23,15 @@ const HomeNavigator = () => {
     <Tab.Navigator
       initialRouteName={routes.Home}
       screenOptions={{
-        headerShown: false,
+        headerTitle: '',
+        headerStyle: {
+          backgroundColor: colors.primary,
+        },
+        headerRight: () => <HeaderBar />,
         tabBarStyle: {
           backgroundColor: colors.primary,
         },
-        tabBarShowLabel: false,
+        tabBarShowLabel: false
       }}
     >
       <Tab.Screen

@@ -13,11 +13,7 @@ const OrganizationNavigator = () => {
     <Stack.Navigator
       initialRouteName={routes.OrganizationList}
       screenOptions={{
-        headerTitle: '',
-        headerStyle: {
-          backgroundColor: colors.primary,
-        },
-        headerRight: () => <HeaderBar />,
+        headerShown: false
       }}
     >
       <Stack.Screen name={routes.OrganizationList} component={OrganizationScreen} />

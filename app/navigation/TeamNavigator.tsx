@@ -11,11 +11,7 @@ const TeamNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitle: '',
-        headerStyle: {
-          backgroundColor: colors.primary,
-        },
-        headerRight: () => <HeaderBar />,
+        headerShown: false
       }}
     >
       <Stack.Screen name={routes.TeamList} component={TeamScreen} />
