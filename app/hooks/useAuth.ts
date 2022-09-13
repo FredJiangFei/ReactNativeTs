@@ -4,7 +4,7 @@ import { AuthContext } from '../auth/context';
 import authStorage from '../auth/storage';
 
 export const useAuth = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser }: any = useContext(AuthContext);
 
   const logOut = () => {
     setUser(null);

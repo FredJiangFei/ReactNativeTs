@@ -11,7 +11,6 @@ async function login(user: LoginCommand) {
   if (res && res.Code === 200) {
     http.setJwt(res.Value.Token);
   }
-
   return res;
 }
 
