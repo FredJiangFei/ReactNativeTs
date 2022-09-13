@@ -8,7 +8,8 @@ const AppNavigator = () => {
   const { user } = useAuth();
   return (
     <NavigationContainer>
-      {user ? <DrawerNavigator /> : <AuthNavigator />}
+      <DrawerNavigator />
+      {/* {user ? <DrawerNavigator /> : <AuthNavigator />} */}
     </NavigationContainer>
   );
 };
