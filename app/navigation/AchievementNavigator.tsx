@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import routes from './routes';
 import HeaderBar from '../parts/headerBar';
 import colors from '../config/colors';
-import AchievementScreen from '../screen/AchievementScreen';
+import AchievementScreen from '../screens/AchievementScreen';
 
 const Stack = createNativeStackNavigator();
 

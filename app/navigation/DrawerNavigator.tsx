@@ -19,6 +19,7 @@ const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
       useLegacyImplementation
+      initialRouteName='HomeTabs'
       screenOptions={({ navigation }) => ({
         drawerPosition: 'right',
         headerTitle: '',

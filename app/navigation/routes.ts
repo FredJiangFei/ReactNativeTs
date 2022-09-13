@@ -1,4 +1,6 @@
 export default Object.freeze({
+  Login: 'Login',
+  Register: 'Register',
   Home: 'Home',
   Post: 'Post',
   Calendar: 'Calendar',

@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import routes from './routes';
 import HeaderBar from '../parts/headerBar';
 import colors from '../config/colors';
-import OrganizationScreen from '../screen/organization/OrganizationScreen';
-import OrganizationDetailsScreen from '../screen/organization/OrganizationDetailsScreen';
+import OrganizationScreen from '../screens/organization/OrganizationScreen';
+import OrganizationDetailsScreen from '../screens/organization/OrganizationDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 
