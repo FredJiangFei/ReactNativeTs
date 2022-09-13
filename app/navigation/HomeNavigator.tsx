@@ -1,14 +1,19 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import routes from './routes';
-import HomeScreen from '../screen/HomeScreen';
-import CalendarScreen from '../screen/CalendarScreen';
 import colors from '../config/colors';
-import { HomeSvg, CalendarSvg, AchievementSvg, OrganizationSvg, TeamSvg } from '../svgs';
-import HeaderBar from '../parts/HeaderBar/headerBar';
-import AchievementScreen from '../screen/AchievementScreen';
-import TeamScreen from '../screen/TeamScreen';
+import {
+  HomeSvg,
+  CalendarSvg,
+  AchievementSvg,
+  OrganizationSvg,
+  TeamSvg,
+} from '../svgs';
 import OrganizationNavigator from './OrganizationNavigator';
+import PostNavigator from './PostNavigator';
+import CalendarNavigator from './CalendarNavigator';
+import AchievementNavigator from './AchievementNavigator';
+import TeamNavigator from './TeamNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,21 +31,21 @@ const HomeNavigator = () => {
     >
       <Tab.Screen
         name={routes.Home}
-        component={HomeScreen}
+        component={PostNavigator}
         options={{
           tabBarIcon: () => <HomeSvg />,
         }}
       />
       <Tab.Screen
         name={routes.Calendar}
-        component={CalendarScreen}
+        component={CalendarNavigator}
         options={{
           tabBarIcon: () => <CalendarSvg />,
         }}
       />
       <Tab.Screen
         name={routes.Achievement}
-        component={AchievementScreen}
+        component={AchievementNavigator}
         options={{
           tabBarIcon: () => <AchievementSvg />,
         }}
@@ -54,7 +59,7 @@ const HomeNavigator = () => {
       />
       <Tab.Screen
         name={routes.Team}
-        component={TeamScreen}
+        component={TeamNavigator}
         options={{
           tabBarIcon: () => <TeamSvg />,
         }}

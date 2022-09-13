@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Search, Notification, Message, Menu } from '../../svgs';
-import defaultStyles from '../../config/styles';
+import { Search, Notification, Message, Menu } from '../svgs';
+import defaultStyles from '../config/styles';
 
 export default function HeaderBar() {
   return (

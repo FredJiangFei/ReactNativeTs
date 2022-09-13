@@ -3,15 +3,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import routes from './routes';
 import HeaderBar from '../parts/headerBar';
 import colors from '../config/colors';
-import OrganizationScreen from '../screen/organization/OrganizationScreen';
-import OrganizationDetailsScreen from '../screen/organization/OrganizationDetailsScreen';
+import AchievementScreen from '../screen/AchievementScreen';
 
 const Stack = createNativeStackNavigator();
 
-const OrganizationNavigator = () => {
+const AchievementNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName={routes.OrganizationList}
       screenOptions={{
         headerTitle: '',
         headerStyle: {
@@ -20,13 +18,9 @@ const OrganizationNavigator = () => {
         headerRight: () => <HeaderBar />,
       }}
     >
-      <Stack.Screen name={routes.OrganizationList} component={OrganizationScreen} />
-      <Stack.Screen
-        name={routes.OrganizationDetails}
-        component={OrganizationDetailsScreen}
-      />
+      <Stack.Screen name={routes.AchievementList} component={AchievementScreen} />
     </Stack.Navigator>
   );
 };
 
-export default OrganizationNavigator;
+export default AchievementNavigator;

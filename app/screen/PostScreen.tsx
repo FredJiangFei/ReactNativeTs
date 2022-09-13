@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-export default function HomeScreen() {
+export default function PostScreen() {
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
+      <Text>Post</Text>
     </View>
   );
 }
