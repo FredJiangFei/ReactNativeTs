@@ -9,26 +9,26 @@ const request = axios.create({
   baseURL: config.apiUrl + '/api',
 });
 
-request.interceptors.response.use(
-  res => res?.data,
-  error => {
-    const expectedError =
-      error.response &&
-      error.response.status >= 400 &&
-      error.response.status <= 600;
-    if (expectedError) {
-      return Promise.resolve(error.response.data);
-    }
+// request.interceptors.response.use(
+//   res => res?.data,
+//   error => {
+//     const expectedError =
+//       error.response &&
+//       error.response.status >= 400 &&
+//       error.response.status <= 600;
+//     if (expectedError) {
+//       return Promise.resolve(error.response.data);
+//     }
 
-    return Promise.resolve(null);
-  },
-);
+//     return Promise.resolve(null);
+//   },
+// );
 
-request.interceptors.request.use((cfg: any) => {
-  const token = getJwt();
-  cfg.headers['Authorization'] = 'Bearer ' + token;
-  return cfg;
-});
+// request.interceptors.request.use((cfg: any) => {
+//   const token = getJwt();
+//   cfg.headers['Authorization'] = 'Bearer ' + token;
+//   return cfg;
+// });
 
 function setJwt(token) {
   sessionStorage.setItem(tokenKey, token);

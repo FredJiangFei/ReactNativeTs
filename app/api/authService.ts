@@ -8,7 +8,6 @@ function test() {
   return http.get(`users?page=2`);
 }
 
-
 export default {
   login,
   test

@@ -10,8 +10,8 @@ export default function LoginScreen({ navigation }) {
 
   const login = async () => {
     const res: any = await authService.test();
-    setUsers(res.data);
-    // setfirst(res.value);
+    setUsers(res.data.data);
+
     // const res: any = await authService.login({
     //   Account: 'fred@qq.com',
     //   Password: aes.encrypt('aa123123'),
