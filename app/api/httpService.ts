@@ -10,9 +10,7 @@ const request = axios.create({
 });
 
 request.interceptors.response.use(
-  res => {
-    return res?.data;
-  },
+  res => res?.data,
   error => {
     const expectedError =
       error.response &&
