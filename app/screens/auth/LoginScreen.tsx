@@ -7,11 +7,11 @@ import { aes } from '../../utils';
 export default function LoginScreen({ navigation }) {
   const { logIn } = useAuth();
   const login = async () => {
-    const res = await authService.login({
+    const res: any = await authService.login({
       Account: 'fred@qq.com',
       Password: aes.encrypt('aa123123'),
     });
-    logIn(res.Value.Token);
+    logIn(res.value.token);
   };
 
   return <Button title='Login' onPress={() => login()}></Button>;
