@@ -6,8 +6,7 @@ const tokenKey = 'token';
 
 const request = axios.create({
   timeout: 30000,
-  // baseURL: config.apiUrl + '/api',
-  baseURL: 'https://reqres.in/api/',
+  baseURL: config.apiUrl + '/api',
 });
 
 request.interceptors.response.use(
