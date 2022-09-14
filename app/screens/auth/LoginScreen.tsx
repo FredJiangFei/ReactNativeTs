@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { Button, Text } from 'react-native';
+import { Button, Text, FlatList } from 'react-native';
 import { authService } from '../../api';
 import { useAuth } from '../../hooks/useAuth';
 import { aes } from '../../utils';
 
 export default function LoginScreen({ navigation }) {
   const { logIn } = useAuth();
-  const [first, setfirst] = useState('');
+  const [users, setUsers] = useState([]);
 
   const login = async () => {
     const res: any = await authService.test();
-    setfirst(res.value);
+    setUsers(res.data);
+    // setfirst(res.value);
     // const res: any = await authService.login({
     //   Account: 'fred@qq.com',
     //   Password: aes.encrypt('aa123123'),
@@ -21,7 +22,11 @@ export default function LoginScreen({ navigation }) {
   return (
     <>
       <Button title='Login' onPress={() => login()}></Button>
-      <Text>{first}</Text>
+      <FlatList
+        data={users}
+        keyExtractor={(item: any) => item.id}
+        renderItem={({ item }) => <Text>{item.first_name}</Text>}
+      />
     </>
   );
 }

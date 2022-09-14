@@ -5,7 +5,7 @@ function login(user) {
 }
 
 function test() {
-  return http.get(`test`);
+  return http.get(`users?page=2`);
 }
 
 
