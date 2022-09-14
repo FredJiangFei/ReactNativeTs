@@ -3,16 +3,15 @@ import { LoginCommand } from './../models/loginCommand';
 import { LoginResult } from '../models/LoginResult';
 import { ResponseResult } from '../models/ResponseResult';
 import http from './httpService';
+import axios from 'axios';
 
 async function login(user: LoginCommand) {
-  const { logIn } = useAuth();
-  const res = await http.post<LoginCommand, ResponseResult<LoginResult>>(
+  console.log("user", user);
+  const res = await axios.post<LoginCommand, ResponseResult<LoginResult>>(
     `login`,
     user,
   );
-  if (res && res.Code === 200) {
-    logIn(res.Value.Token);
-  }
+  console.log("res", res);
   return res;
 }
 
