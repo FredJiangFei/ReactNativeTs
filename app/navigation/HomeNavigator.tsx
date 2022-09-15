@@ -22,13 +22,18 @@ const HomeNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName={routes.Home}
-      screenOptions={{
-        headerShown: false,
+      screenOptions={({ navigation, route }) => ({
         tabBarStyle: {
           backgroundColor: colors.primary,
         },
-        tabBarShowLabel: false
-      }}
+        tabBarShowLabel: false,
+        headerTitle: '',
+        headerStyle: {
+          backgroundColor: colors.primary,
+        },
+        headerRight: () => <HeaderBar navigation={navigation} />,
+
+      })}
     >
       <Tab.Screen
         name={routes.Home}

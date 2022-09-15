@@ -11,7 +11,7 @@ export default function App() {
     <AuthContext.Provider value={{ user, setUser }}>
       <SafeAreaView style={styles.safeArea}>
         <AppNavigator />
-        <StatusBar style='light' />
+        <StatusBar style='auto' />
       </SafeAreaView>
     </AuthContext.Provider>
   );

@@ -15,6 +15,7 @@ import routes from './routes';
 import {
   getFocusedRouteNameFromRoute,
   useNavigation,
+  useRoute,
 } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
@@ -48,7 +49,6 @@ function CustomDrawerContent({ navigation }) {
 
 const DrawerNavigator = () => {
   const nav = useNavigation();
-
   const getHeaderLeft = () => {
     return <GoBack style={defaultStyles.ml8} onPress={() => nav.goBack()} />;
   };
@@ -58,14 +58,10 @@ const DrawerNavigator = () => {
       useLegacyImplementation
       drawerContent={props => <CustomDrawerContent {...props} />}
       initialRouteName={routes.Home}
-      screenOptions={({ navigation, route }) => ({
+      screenOptions={({ route }) => ({
         drawerPosition: 'right',
-        headerTitle: '',
-        headerStyle: {
-          backgroundColor: colors.primary,
-        },
-        headerLeft: () => getHeaderLeft(),
-        headerRight: () => <HeaderBar navigation={navigation} />,
+        headerShown: route.name !== routes.Home,
+        headerLeft: () => getHeaderLeft()
       })}
     >
       <Drawer.Screen name={routes.Home} component={HomeNavigator} />
