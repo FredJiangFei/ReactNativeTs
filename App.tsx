@@ -2,7 +2,7 @@ import AppNavigator from './app/navigation/AppNavigator';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { useState } from 'react';
-import { AuthContext } from './app/auth/context'
+import { AuthContext } from './app/auth/context';
 
 export default function App() {
   const [user, setUser] = useState();
@@ -10,8 +10,8 @@ export default function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <SafeAreaView style={styles.safeArea}>
-        <StatusBar />
         <AppNavigator />
+        <StatusBar style='light' />
       </SafeAreaView>
     </AuthContext.Provider>
   );

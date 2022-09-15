@@ -2,7 +2,6 @@ import React from 'react';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
-  DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
 import { Text, StyleSheet } from 'react-native';
@@ -13,6 +12,10 @@ import { GoBack } from '../svgs';
 import defaultStyles from '../config/styles';
 import { useAuth } from '../hooks/useAuth';
 import routes from './routes';
+import {
+  getFocusedRouteNameFromRoute,
+  useNavigation,
+} from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 
@@ -38,27 +41,30 @@ function CustomDrawerContent({ navigation }) {
         label='Payment History'
         onPress={() => navigation.navigate('Payment History')}
       />
-      <DrawerItem
-        label='Log Out'
-        onPress={() => logOut()}
-      />
+      <DrawerItem label='Log Out' onPress={() => logOut()} />
     </DrawerContentScrollView>
   );
 }
 
 const DrawerNavigator = () => {
+  const nav = useNavigation();
+
+  const getHeaderLeft = () => {
+    return <GoBack style={defaultStyles.ml8} onPress={() => nav.goBack()} />;
+  };
+
   return (
     <Drawer.Navigator
       useLegacyImplementation
       drawerContent={props => <CustomDrawerContent {...props} />}
       initialRouteName={routes.Home}
-      screenOptions={({ navigation }) => ({
+      screenOptions={({ navigation, route }) => ({
         drawerPosition: 'right',
         headerTitle: '',
         headerStyle: {
           backgroundColor: colors.primary,
         },
-        headerLeft: () => <GoBack style={defaultStyles.ml8} />,
+        headerLeft: () => getHeaderLeft(),
         headerRight: () => <HeaderBar navigation={navigation} />,
       })}
     >
