@@ -2,6 +2,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import config from '../../config';
 import storage from '../auth/storage';
+import { store as storeCache, get as getCache } from '../utils/cache';
 
 const tokenKey = 'token';
 
@@ -40,8 +41,19 @@ function isTokenExpired() {
   return Date.now() >= decodedToken.exp * 1000;
 }
 
+const getWithCache = async (url, params, axiosConfig) => {
+  const res: any = await request.get(url, params, axiosConfig);
+  if (res.ok) {
+    storeCache(url, res.data);
+    return res;
+  }
+
+  const data = await getCache(url);
+  return data ? { ok: true, data } : res;
+};
+
 export default {
-  get: request.get,
+  get: getWithCache,
   post: request.post,
   put: request.put,
   delete: request.delete,
