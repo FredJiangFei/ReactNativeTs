@@ -36,7 +36,7 @@ function CustomDrawerContent({ navigation }) {
       />
       <DrawerItem
         label='Sign In and Account Security'
-        onPress={() => navigation.navigate('Sign In and Account Security')}
+        onPress={() => navigation.navigate('Account Security')}
       />
       <DrawerItem
         label='Payment History'
@@ -65,9 +65,9 @@ const DrawerNavigator = () => {
       })}
     >
       <Drawer.Screen name={routes.Home} component={HomeNavigator} />
-      <Drawer.Screen name='My Profile' component={MyProfile} />
+      <Drawer.Screen name='My Profile' component={MyProfile}/>
       <Drawer.Screen
-        name='Sign In and Account Security'
+        name='Account Security'
         component={SignInAndAccountSecurity}
       />
       <Drawer.Screen name='Payment History' component={PaymentHistory} />

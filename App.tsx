@@ -1,6 +1,6 @@
 import AppNavigator from './app/navigation/AppNavigator';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import { useState } from 'react';
 import { AuthContext } from './app/auth/context';
 
@@ -10,7 +10,7 @@ export default function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <SafeAreaView style={styles.safeArea}>
-        <AppNavigator />
+          <AppNavigator />
         <StatusBar style='auto' />
       </SafeAreaView>
     </AuthContext.Provider>
