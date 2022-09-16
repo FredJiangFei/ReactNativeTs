@@ -16,7 +16,7 @@ export default function LoginScreen({ navigation }) {
       Account: 'fred@qq.com',
       Password: aes.encrypt('aa123123'),
     });
-    logIn(res.data.value.token);
+    logIn(res.value.token);
     setStatus(requestStatus.SUCCESS);
   };
 

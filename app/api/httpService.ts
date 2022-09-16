@@ -1,6 +1,7 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import config from '../../config';
+import storage from '../auth/storage';
 
 const tokenKey = 'token';
 
@@ -9,41 +10,26 @@ const request = axios.create({
   baseURL: config.apiUrl + '/api',
 });
 
-// request.interceptors.response.use(
-//   res => res?.data,
-//   error => {
-//     const expectedError =
-//       error.response &&
-//       error.response.status >= 400 &&
-//       error.response.status <= 600;
-//     if (expectedError) {
-//       return Promise.resolve(error.response.data);
-//     }
+request.interceptors.response.use(
+  res => res?.data,
+  error => {
+    const expectedError =
+      error.response &&
+      error.response.status >= 400 &&
+      error.response.status <= 600;
+    if (expectedError) {
+      return Promise.resolve(error.response.data);
+    }
 
-//     return Promise.resolve(null);
-//   },
-// );
+    return Promise.resolve(null);
+  },
+);
 
-// request.interceptors.request.use((cfg: any) => {
-//   const token = getJwt();
-//   cfg.headers['Authorization'] = 'Bearer ' + token;
-//   return cfg;
-// });
-
-function setJwt(token) {
-  sessionStorage.setItem(tokenKey, token);
-}
-
-function removeJwt() {
-  sessionStorage.removeItem(tokenKey);
-}
-
-function getJwt() {
-  if (isTokenExpired()) {
-    return null;
-  }
-  return sessionStorage.getItem(tokenKey);
-}
+request.interceptors.request.use(async (cfg: any) => {
+  const token = await storage.getToken();
+  cfg.headers['Authorization'] = 'Bearer ' + token;
+  return cfg;
+});
 
 function isTokenExpired() {
   const localJwt = sessionStorage.getItem(tokenKey);
@@ -59,8 +45,5 @@ export default {
   post: request.post,
   put: request.put,
   delete: request.delete,
-  getJwt,
-  setJwt,
-  removeJwt,
   isTokenExpired,
 };
