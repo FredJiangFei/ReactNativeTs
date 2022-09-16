@@ -5,7 +5,7 @@
       "ddd": 0,
       "ind": 0,
       "ty": 4,
-      "nm": "形状图层 2",
+      "nm": "type 2",
       "ks": {
         "o": { "k": 100 },
         "r": {
@@ -59,7 +59,7 @@
               "ty": "el",
               "s": { "k": [47.704, 47.704] },
               "p": { "k": [0, 0] },
-              "nm": "椭圆路径 1",
+              "nm": "type 1",
               "mn": "ADBE Vector Shape - Ellipse"
             },
             {
@@ -74,7 +74,7 @@
               "lc": 1,
               "lj": 1,
               "ml": 4,
-              "nm": "描边 1",
+              "nm": "border 1",
               "mn": "ADBE Vector Graphic - Stroke"
             },
             {
@@ -86,10 +86,10 @@
               "o": { "k": 100, "ix": 7 },
               "sk": { "k": 0, "ix": 4 },
               "sa": { "k": 0, "ix": 5 },
-              "nm": "变换"
+              "nm": "change"
             }
           ],
-          "nm": "椭圆 1",
+          "nm": "ellipse 1",
           "np": 3,
           "mn": "ADBE Vector Group"
         },
@@ -100,7 +100,7 @@
           "o": { "k": 0, "ix": 3 },
           "m": 1,
           "ix": 2,
-          "nm": "修剪路径 1",
+          "nm": "road 1",
           "mn": "ADBE Vector Filter - Trim"
         }
       ],
@@ -114,7 +114,7 @@
       "ddd": 0,
       "ind": 1,
       "ty": 4,
-      "nm": "形状图层 1",
+      "nm": "type 1",
       "ks": {
         "o": { "k": 100 },
         "r": { "k": 0 },
@@ -132,7 +132,7 @@
               "ty": "el",
               "s": { "k": [47.704, 47.704] },
               "p": { "k": [0, 0] },
-              "nm": "椭圆路径 1",
+              "nm": "ellipse road 1",
               "mn": "ADBE Vector Shape - Ellipse"
             },
             {
@@ -143,7 +143,7 @@
               "lc": 1,
               "lj": 1,
               "ml": 4,
-              "nm": "描边 1",
+              "nm": "border 1",
               "mn": "ADBE Vector Graphic - Stroke"
             },
             {
@@ -155,10 +155,10 @@
               "o": { "k": 100, "ix": 7 },
               "sk": { "k": 0, "ix": 4 },
               "sa": { "k": 0, "ix": 5 },
-              "nm": "变换"
+              "nm": "change"
             }
           ],
-          "nm": "椭圆 1",
+          "nm": "ellipse 1",
           "np": 3,
           "mn": "ADBE Vector Group"
         }
