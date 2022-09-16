@@ -12,4 +12,5 @@ export default Object.freeze({
   OrganizationDetails: 'OrganizationDetails',
   Team: 'Team',
   TeamList: 'TeamList',
+  CreateTeam: 'CreateTeam',
 });
