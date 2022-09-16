@@ -19,7 +19,7 @@ export default function CreateTeamScreen() {
         initialValues={{}}
         onSubmit={handleCreateTeamClick}
         style={styles.container}
-      >
+      > 
         {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
           <>
             <H2>Create Team</H2>
