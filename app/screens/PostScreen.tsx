@@ -4,11 +4,11 @@ import { ElButton } from '../components';
 import { useNotifications } from '../hooks/useNotifications';
 
 export default function PostScreen({ navigation }) {
-  const noti = useNotifications({ navigation });
+  const notification = useNotifications({ navigation });
   return (
     <View style={styles.container}>
       <Text>Post</Text>
-      <ElButton onPress={() => noti.sendLocalNotification()}>
+      <ElButton onPress={async () => await notification.sendLocalNotification()}>
         Send Local Notification
       </ElButton>
     </View>

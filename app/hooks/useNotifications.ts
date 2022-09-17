@@ -15,14 +15,14 @@ Notifications.setNotificationHandler({
 export const useNotifications = ({ navigation }) => {
   const [token, setToken] = useState('');
   const [notification, setNotification] = useState(false);
-  const notiListener = useRef();
-  const resListener = useRef();
+  const listener: any = useRef();
+  const resListener: any = useRef();
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(token => setToken(token));
 
-    notiListener.current = Notifications.addNotificationReceivedListener(
-      (n: any) => setNotification(n),
+    listener.current = Notifications.addNotificationReceivedListener((n: any) =>
+      setNotification(n),
     );
 
     resListener.current = Notifications.addNotificationResponseReceivedListener(
@@ -32,7 +32,7 @@ export const useNotifications = ({ navigation }) => {
     );
 
     return () => {
-      Notifications.removeNotificationSubscription(notiListener.current);
+      Notifications.removeNotificationSubscription(listener.current);
       Notifications.removeNotificationSubscription(resListener.current);
     };
   }, []);
@@ -94,13 +94,11 @@ export const useNotifications = ({ navigation }) => {
   const sendLocalNotification = async () => {
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: 'Look at that notification',
-        body: "I'm so proud of myself!",
+        title: "You've got mail! 📬",
+        body: 'Here is the notification body',
+        data: { data: 'goes here' },
       },
-      trigger: {
-        seconds: 2,
-        channelId: 'new-emails',
-      },
+      trigger: { seconds: 2 },
     });
   };
 
