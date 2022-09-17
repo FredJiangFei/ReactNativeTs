@@ -1,7 +1,7 @@
 import { Platform } from 'react-native';
 import { useEffect, useRef, useState } from 'react';
 import * as Notifications from 'expo-notifications';
-import Device from 'expo-device';
+import * as Device from 'expo-device';
 import routes from '../navigation/routes';
 
 Notifications.setNotificationHandler({
@@ -94,8 +94,8 @@ export const useNotifications = ({ navigation }) => {
   const sendLocalNotification = async () => {
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: "You've got mail! 📬",
-        body: 'Here is the notification body',
+        title: "Hello React Native",
+        body: 'Here is the notification body!!!!',
         data: { data: 'goes here' },
       },
       trigger: { seconds: 2 },
