@@ -8,5 +8,5 @@ const xml = `
 `
 
 export default function GoBack({ ...rest }) {
-  return <SvgXml xml={xml} fill={colors.primary} {...rest}/>
+  return <SvgXml xml={xml} fill={colors.white} {...rest}/>
 }

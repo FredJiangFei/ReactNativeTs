@@ -32,7 +32,6 @@ const HomeNavigator = () => {
           backgroundColor: colors.primary,
         },
         headerRight: () => <HeaderBar navigation={navigation} />,
-
       })}
     >
       <Tab.Screen

@@ -17,14 +17,16 @@ import {
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const Drawer = createDrawerNavigator();
 
 const MyProfile = () => <Text>My Profile</Text>;
-const SignInAndAccountSecurity = () => (
-  <Text>Sign In and Account Security</Text>
+const AccountSecurity = () => (
+  <Text>Account Security</Text>
 );
 const PaymentHistory = () => <Text>Payment History</Text>;
+const Message = () => <Text>Message</Text>;
 
 function CustomDrawerContent({ navigation }) {
   const { logOut } = useAuth();
@@ -49,8 +51,10 @@ function CustomDrawerContent({ navigation }) {
 
 const DrawerNavigator = () => {
   const nav = useNavigation();
-  const getHeaderLeft = () => {
-    return <GoBack style={defaultStyles.ml8} onPress={() => nav.goBack()} />;
+  const getHeaderLeft = (route) => {
+    return <TouchableWithoutFeedback onPress={() => nav.goBack()}> 
+      <GoBack style={defaultStyles.ml8} />
+    </TouchableWithoutFeedback>;
   };
 
   return (
@@ -61,16 +65,20 @@ const DrawerNavigator = () => {
       screenOptions={({ route }) => ({
         drawerPosition: 'right',
         headerShown: route.name !== routes.HomeNavigator,
-        headerLeft: () => getHeaderLeft()
+        headerLeft: () => getHeaderLeft(route),
+        headerStyle: {
+          backgroundColor: colors.primary,
+        },
+        headerTitleStyle: {
+          color: colors.white
+        }
       })}
     >
       <Drawer.Screen name={routes.HomeNavigator} component={HomeNavigator} />
       <Drawer.Screen name='My Profile' component={MyProfile}/>
-      <Drawer.Screen
-        name='Account Security'
-        component={SignInAndAccountSecurity}
-      />
+      <Drawer.Screen name='Account Security' component={AccountSecurity}/>
       <Drawer.Screen name='Payment History' component={PaymentHistory} />
+      <Drawer.Screen name='Message' component={Message} />
     </Drawer.Navigator>
   );
 };

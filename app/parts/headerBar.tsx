@@ -8,7 +8,7 @@ export default function HeaderBar({ navigation }) {
     <View style={styles.menuBar}>
       <Search style={defaultStyles.mr16} />
       <Notification style={defaultStyles.mr16} />
-      <Message style={defaultStyles.mr16} />
+      <Message style={defaultStyles.mr16} onPress={() => navigation.navigate('Message')}/>
       <Menu style={defaultStyles.mr8} onPress={() => navigation.toggleDrawer()}/>
     </View>
   );
