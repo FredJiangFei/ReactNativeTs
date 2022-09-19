@@ -10,7 +10,7 @@ export default function App() {
 
   return (
     <>
-      <OfflineNotice />
+      {/* <OfflineNotice /> */}
       <AuthContext.Provider value={{ user, setUser }}>
         <SafeAreaView style={styles.safeArea}>
           <AppNavigator />

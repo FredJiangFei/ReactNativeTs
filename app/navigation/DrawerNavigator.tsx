@@ -57,14 +57,14 @@ const DrawerNavigator = () => {
     <Drawer.Navigator
       useLegacyImplementation
       drawerContent={props => <CustomDrawerContent {...props} />}
-      initialRouteName={routes.Home}
+      initialRouteName={routes.HomeNavigator}
       screenOptions={({ route }) => ({
         drawerPosition: 'right',
-        headerShown: route.name !== routes.Home,
+        headerShown: route.name !== routes.HomeNavigator,
         headerLeft: () => getHeaderLeft()
       })}
     >
-      <Drawer.Screen name={routes.Home} component={HomeNavigator} />
+      <Drawer.Screen name={routes.HomeNavigator} component={HomeNavigator} />
       <Drawer.Screen name='My Profile' component={MyProfile}/>
       <Drawer.Screen
         name='Account Security'
