@@ -17,7 +17,6 @@ const ElAnimatedPan = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titleText}>Drag & Release this box!</Text>
       <Animated.View
         style={{
           transform: [{ translateX: pan.x }, { translateY: pan.y }],
