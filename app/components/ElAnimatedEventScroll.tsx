@@ -16,7 +16,6 @@ const images = new Array(6).fill(
 
 const ElAnimatedScroll = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
-
   const { width: windowWidth } = useWindowDimensions();
 
   return (
