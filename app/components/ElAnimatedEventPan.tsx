@@ -2,24 +2,29 @@ import React, { useRef } from 'react';
 import { Animated, View, StyleSheet, PanResponder } from 'react-native';
 
 const ElAnimatedEventPan = () => {
-  const position = useRef< any>(new Animated.ValueXY()).current;
-
+  const pan = useRef<any>(new Animated.ValueXY()).current;
   const panResponder = useRef(
     PanResponder.create({
-      onMoveShouldSetPanResponderCapture: () => true,
+      onMoveShouldSetPanResponder: () => true,
       onPanResponderGrant: () => {
-        position.setOffset({
-          x: position.x._value,
-          y: position.y._value,
+        console.log({ ...pan.x }, 'setOffset Before');
+        pan.setOffset({
+          x: pan.x._value,
+          y: pan.y._value,
         });
-        position.setValue({ x: 0, y: 0 });
+        console.log({ ...pan.x }, 'setOffset After');
       },
-      onPanResponderMove: Animated.event([
-        null,
-        { dx: position.x, dy: position.y },
-      ]),
+      // onPanResponderMove: (_, gesture) => {
+      //   pan.x.setValue(gesture.dx);
+      //   pan.y.setValue(gesture.dy);
+      // },
+      onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }], {
+        useNativeDriver: false,
+      }),
       onPanResponderRelease: () => {
-        position.flattenOffset();
+        console.log({ ...pan.x }, 'flattenOffset Before');
+        pan.flattenOffset();
+        console.log({ ...pan.x }, 'flattenOffset After');
       },
     }),
   ).current;
@@ -27,10 +32,10 @@ const ElAnimatedEventPan = () => {
   return (
     <View style={styles.container}>
       <Animated.View
-        style={[styles.ball, position.getLayout()]}
+        style={[styles.ball, pan.getLayout()]}
         {...panResponder.panHandlers}
       />
-    </View> 
+    </View>
   );
 };
 
