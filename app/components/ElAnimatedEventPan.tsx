@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import { Animated, View, StyleSheet, PanResponder, Text } from 'react-native';
+import { Animated, View, StyleSheet, PanResponder } from 'react-native';
 
 const ElAnimatedEventPan = () => {
-  const position = new Animated.ValueXY();
+  const position = useRef< any>(new Animated.ValueXY()).current;
 
   const panResponder = useRef(
     PanResponder.create({
@@ -30,7 +30,7 @@ const ElAnimatedEventPan = () => {
         style={[styles.ball, position.getLayout()]}
         {...panResponder.panHandlers}
       />
-    </View>
+    </View> 
   );
 };
 
