@@ -4,6 +4,7 @@ import { SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import { useState } from 'react';
 import { AuthContext } from './app/auth/context';
 import OfflineNotice from './app/parts/offlineNotice';
+import { NativeBaseProvider } from 'native-base';
 
 export default function App() {
   const [user, setUser] = useState();
@@ -11,12 +12,14 @@ export default function App() {
   return (
     <>
       {/* <OfflineNotice /> */}
-      <AuthContext.Provider value={{ user, setUser }}>
-        <SafeAreaView style={styles.safeArea}>
-          <AppNavigator />
-          <StatusBar style='auto' />
-        </SafeAreaView>
-      </AuthContext.Provider>
+      <NativeBaseProvider>
+        <AuthContext.Provider value={{ user, setUser }}>
+          <SafeAreaView style={styles.safeArea}>
+            <AppNavigator />
+            <StatusBar style='auto' />
+          </SafeAreaView>
+        </AuthContext.Provider>
+      </NativeBaseProvider>
     </>
   );
 }
