@@ -3,103 +3,49 @@ import { StyleSheet, Animated, PanResponder } from 'react-native';
 import { Box, Flex, Text } from 'native-base';
 import colors from 'el/config/colors';
 
-export default function ElSlider({ min, max, value, onChange }) {
-    const pan = useRef<any>(new Animated.ValueXY()).current;
-    const pan2 = useRef<any>(new Animated.ValueXY()).current;
+const Slider = ({ max, value, onChange, containerWidth }) => {
+    const position = useRef<any>(new Animated.ValueXY()).current;
+    const [tempValue, setTempValue] = useState<number>(value);
 
-    const [s1, setS1] = useState<number>(value[0]);
-    const [s2, setS2] = useState<number>(value[1]);
-
-    const [containerWidth, setContainerWidth] = useState<number>(0);
     const thumbSize = 15;
+    const calPos = v => (containerWidth / max) * v;
+    const calValue = pos => Math.floor((max / 256) * pos);
 
     useEffect(() => {
-        pan.x.setValue(calPos(value[0]));
-        pan2.x.setValue(calPos(value[1]));
-    }, [min, max, value, containerWidth]);
-
-    const onLayout = event => {
-        const { width } = event.nativeEvent.layout;
-        setContainerWidth(width);
-    };
-
-    const calPos = value => (containerWidth / max) * value;
-    const calValue = pos => Math.floor((max / 256) * pos);
+        position.x.setValue(calPos(value));
+    }, [containerWidth]);
 
     const panResponder = useRef(
         PanResponder.create({
             onMoveShouldSetPanResponder: () => true,
             onPanResponderGrant: () => {
-                pan.setOffset({
-                    x: pan.x._value,
-                    y: pan.y._value,
+                position.setOffset({
+                    x: position.x._value,
+                    y: position.y._value,
                 });
             },
             onPanResponderMove: (_, gesture) => {
-                pan.x.setValue(gesture.dx);
-                setS1(calValue(pan.x._value + pan.x._offset));
+                position.x.setValue(gesture.dx);
+                setTempValue(calValue(position.x._value + position.x._offset));
             },
             onPanResponderRelease: () => {
-                pan.flattenOffset();
-
-                onChange([calValue(pan.x._value), s2]);
-            },
-        }),
-    ).current;
-
-    const panResponder2 = useRef(
-        PanResponder.create({
-            onMoveShouldSetPanResponder: () => true,
-            onPanResponderGrant: () => {
-                pan2.setOffset({
-                    x: pan2.x._value,
-                    y: pan2.y._value,
-                });
-            },
-            onPanResponderMove: (_, gesture) => {
-                pan2.x.setValue(gesture.dx);
-                setS2(calValue(pan2.x._value + pan2.x._offset));
-            },
-            onPanResponderRelease: () => {
-                pan2.flattenOffset();
-
-                onChange([s1, calValue(pan2.x._value)]);
+                position.flattenOffset();
+                onChange(calValue(position.x._value));
             },
         }),
     ).current;
 
     return (
-        <Box p={8}>
-            <Flex onLayout={onLayout} h={8} justify="center">
-                <Flex h={1} bgColor={colors.light}></Flex>
-                <Animated.View
-                    style={[
-                        styles.thumb,
-                        pan.getLayout(),
-                        {
-                            transform: [{ translateX: -thumbSize }],
-                        },
-                    ]}
-                    {...panResponder.panHandlers}>
-                    <Text position="absolute" bottom={6} w={8}>
-                        {s1}
-                    </Text>
-                </Animated.View>
-                <Animated.View
-                    style={[
-                        styles.thumb,
-                        pan2.getLayout(),
-                        {
-                            transform: [{ translateX: -thumbSize }],
-                        },
-                    ]}
-                    {...panResponder2.panHandlers}>
-                    <Text position="absolute" bottom={6} w={8}>
-                        {s2}
-                    </Text>
-                </Animated.View>
-
-                {/* <Animated.View
+        <Animated.View
+            style={[
+                styles.thumb,
+                position.getLayout(),
+                {
+                    transform: [{ translateX: -thumbSize }],
+                },
+            ]}
+            {...panResponder.panHandlers}>
+            {/* <Animated.View
                     style={[
                         styles.thumb,
                         {
@@ -117,6 +63,47 @@ export default function ElSlider({ min, max, value, onChange }) {
                         {slider2}
                     </Text>
                 </Animated.View> */}
+            <Text position="absolute" bottom={6} w={8}>
+                {tempValue}
+            </Text>
+        </Animated.View>
+    );
+};
+
+export default function ElSlider({ min, max, value, onChange }) {
+    const [containerWidth, setContainerWidth] = useState<number>(0);
+
+    const onLayout = event => {
+        const { width } = event.nativeEvent.layout;
+        setContainerWidth(width);
+    };
+
+    const handleSlider1Change = v => {
+        const changedValue = v > value[1] ? [value[1], v] : [v, value[1]];
+        onChange(changedValue);
+    };
+
+    const handleSlider2Change = v => {
+        const changedValue = v > value[0] ? [value[0], v] : [v, value[0]];
+        onChange(changedValue);
+    };
+
+    return (
+        <Box p={2}>
+            <Flex onLayout={onLayout} h={8} justify="center">
+                <Flex h={1} bgColor={colors.light}></Flex>
+                <Slider
+                    max={max}
+                    value={value[0]}
+                    onChange={handleSlider1Change}
+                    containerWidth={containerWidth}
+                />
+                <Slider
+                    max={max}
+                    value={value[1]}
+                    onChange={handleSlider2Change}
+                    containerWidth={containerWidth}
+                />
             </Flex>
             <Flex direction="row" justify="space-between">
                 <Text>{min}</Text>
