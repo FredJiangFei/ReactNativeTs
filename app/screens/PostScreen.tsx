@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import ElAnimated from '../components/ElAnimated';
 import ElAnimatedEventPan from '../components/ElAnimatedEventPan';
-import ElAnimatedEventScroll from '../components/ElAnimatedEventScroll';
+import ElAnimatedEventScrollX from '../components/ElAnimatedEventScrollX';
 import ElList from '../components/ElList';
 import { useNotifications } from '../hooks/useNotifications';
 
@@ -13,7 +13,7 @@ export default function PostScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <ElAnimatedEventPan />
+ 
     </View>
   );
 }

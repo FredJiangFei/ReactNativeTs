@@ -14,7 +14,7 @@ const images = new Array(6).fill(
   'https://images.unsplash.com/photo-1556740749-887f6717d7e4',
 );
 
-const ElAnimatedScroll = () => {
+const ElAnimatedEventScrollX = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const { width: windowWidth } = useWindowDimensions();
 
@@ -122,4 +122,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ElAnimatedScroll;
+export default ElAnimatedEventScrollX;
