@@ -44,24 +44,6 @@ const Slider = ({ max, value, onChange, containerWidth }) => {
                 },
             ]}
             {...panResponder.panHandlers}>
-            {/* <Animated.View
-                    style={[
-                        styles.thumb,
-                        {
-                            transform: [
-                                {
-                                    translateX: pan2.x.interpolate({
-                                        inputRange: [min, max],
-                                        outputRange: [0 - thumbSize, containerWidth - thumbSize],
-                                    }),
-                                },
-                            ],
-                        },
-                    ]}>
-                    <Text position="absolute" bottom={6}>
-                        {slider2}
-                    </Text>
-                </Animated.View> */}
             <Text position="absolute" bottom={6} w={8}>
                 {tempValue}
             </Text>
@@ -71,6 +53,8 @@ const Slider = ({ max, value, onChange, containerWidth }) => {
 
 export default function ElSlider({ min, max, value, onChange }) {
     const [containerWidth, setContainerWidth] = useState<number>(0);
+    const v1 = useRef<number>(value[0]);
+    const v2 = useRef<number>(value[1]);
 
     const onLayout = event => {
         const { width } = event.nativeEvent.layout;
@@ -78,12 +62,14 @@ export default function ElSlider({ min, max, value, onChange }) {
     };
 
     const handleSlider1Change = v => {
-        const changedValue = v > value[1] ? [value[1], v] : [v, value[1]];
+        v1.current = v;
+        const changedValue = v > v2.current ? [v2.current, v] : [v, v2.current];
         onChange(changedValue);
     };
 
     const handleSlider2Change = v => {
-        const changedValue = v > value[0] ? [value[0], v] : [v, value[0]];
+        v2.current = v;
+        const changedValue = v > v1.current ? [v1.current, v] : [v, v1.current];
         onChange(changedValue);
     };
 
@@ -93,13 +79,13 @@ export default function ElSlider({ min, max, value, onChange }) {
                 <Flex h={1} bgColor='gray.200'></Flex>
                 <Slider
                     max={max}
-                    value={value[0]}
+                    value={v1.current}
                     onChange={handleSlider1Change}
                     containerWidth={containerWidth}
                 />
                 <Slider
                     max={max}
-                    value={value[1]}
+                    value={v2.current}
                     onChange={handleSlider2Change}
                     containerWidth={containerWidth}
                 />
