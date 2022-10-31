@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { StyleSheet, Animated, PanResponder } from 'react-native';
 import { Box, Flex, Text } from 'native-base';
 
-const Slider = ({ max, value, onChange, containerWidth }) => {
+const Thumb = ({ max, value, onChange, containerWidth }) => {
     const position = useRef<any>(new Animated.ValueXY()).current;
     const [tempValue, setTempValue] = useState<number>(value);
 
@@ -53,40 +53,43 @@ const Slider = ({ max, value, onChange, containerWidth }) => {
 
 export default function ElSlider({ min, max, value, onChange }) {
     const [containerWidth, setContainerWidth] = useState<number>(0);
-    const v1 = useRef<number>(value[0]);
-    const v2 = useRef<number>(value[1]);
+    const thumb1 = useRef<number>(value[0]);
+    const thumb2 = useRef<number>(value[1]);
 
     const onLayout = event => {
         const { width } = event.nativeEvent.layout;
         setContainerWidth(width);
     };
 
-    const handleSlider1Change = v => {
-        v1.current = v;
-        const changedValue = v > v2.current ? [v2.current, v] : [v, v2.current];
-        onChange(changedValue);
+    const handleThumb1Change = newValue => {
+        thumb1.current = newValue;
+        emitNewValues(newValue, thumb2.current);
     };
 
-    const handleSlider2Change = v => {
-        v2.current = v;
-        const changedValue = v > v1.current ? [v1.current, v] : [v, v1.current];
-        onChange(changedValue);
+    const handleThumb2Change = newValue => {
+        thumb2.current = newValue;
+        emitNewValues(newValue, thumb1.current);
     };
+
+    const emitNewValues = (value1, value2) => {
+        const newValues = value1 > value2 ? [value2, value1] : [value1, value2];
+        onChange(newValues);
+    }
 
     return (
         <Box p={2}>
             <Flex onLayout={onLayout} h={8} justify="center">
                 <Flex h={1} bgColor='gray.200'></Flex>
-                <Slider
+                <Thumb
                     max={max}
-                    value={v1.current}
-                    onChange={handleSlider1Change}
+                    value={thumb1.current}
+                    onChange={handleThumb1Change}
                     containerWidth={containerWidth}
                 />
-                <Slider
+                <Thumb
                     max={max}
-                    value={v2.current}
-                    onChange={handleSlider2Change}
+                    value={thumb2.current}
+                    onChange={handleThumb2Change}
                     containerWidth={containerWidth}
                 />
             </Flex>
