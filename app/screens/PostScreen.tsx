@@ -1,4 +1,4 @@
-import { Box } from 'native-base';
+import { Box, Button } from 'native-base';
 import React, { useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import ElAnimated from '../components/ElAnimated';
@@ -15,6 +15,9 @@ export default function PostScreen({ navigation }) {
 
   const [range, setRange] = useState([0, 3]);
 
+  const [min, setMin] = useState(0);
+  const [max, setMax] = useState(20);
+
   return (
     <>
       <Box mt={4}>
@@ -22,8 +25,10 @@ export default function PostScreen({ navigation }) {
         <Text>{range[1]}</Text>
       </Box>
       <Box mt={4} mx={4}>
-        <ElSlider min={0} max={20} value={range} onChange={setRange} />
+        <ElSlider min={min} max={max} value={range} onChange={setRange} />
       </Box>
+
+      <Button onPress={() => setMax(100)}>Change</Button>
     </>
   );
 }
