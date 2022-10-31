@@ -2,13 +2,19 @@ import React, { useRef, useState, useEffect } from 'react';
 import { StyleSheet, Animated, PanResponder } from 'react-native';
 import { Box, Flex, Text } from 'native-base';
 
-const Thumb = ({ max, value, onChange, containerWidth }) => {
+const Thumb = ({ min, max, value, onChange, containerWidth }) => {
   const position = useRef<any>(new Animated.ValueXY()).current;
   const [tempValue, setTempValue] = useState<number>(value);
 
-  const thumbSize = 15;
   const calPos = v => (containerWidth / max) * v;
-  const calValue = pos => Math.floor((max / 256) * pos);
+  const calValue = pos => {
+    const newValue = Math.floor((max / 256) * pos);
+
+    if (newValue < min) return min;
+    if (newValue > max) return max;
+
+    return newValue;
+  };
 
   useEffect(() => {
     position.x.setValue(calPos(value));
@@ -38,9 +44,16 @@ const Thumb = ({ max, value, onChange, containerWidth }) => {
     <Animated.View
       style={[
         styles.thumb,
-        position.getLayout(),
         {
-          transform: [{ translateX: -thumbSize }],
+          transform: [
+            {
+              translateX: position.x.interpolate({
+                inputRange: [0, 256],
+                outputRange: [0, 256],
+                extrapolate: 'clamp',
+              }),
+            },
+          ],
         },
       ]}
       {...panResponder.panHandlers}
@@ -82,12 +95,14 @@ export default function ElSlider({ min, max, value, onChange }) {
       <Flex onLayout={onLayout} h={8} justify='center'>
         <Flex h={1} bgColor='gray.200'></Flex>
         <Thumb
+          min={min}
           max={max}
           value={thumb1.current}
           onChange={handleThumb1Change}
           containerWidth={containerWidth}
         />
         <Thumb
+          min={min}
           max={max}
           value={thumb2.current}
           onChange={handleThumb2Change}
