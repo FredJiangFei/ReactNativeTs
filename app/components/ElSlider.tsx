@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { StyleSheet, Animated, PanResponder } from 'react-native';
 import { Box, Flex, Text } from 'native-base';
-import colors from 'el/config/colors';
 
 const Slider = ({ max, value, onChange, containerWidth }) => {
     const position = useRef<any>(new Animated.ValueXY()).current;
@@ -91,7 +90,7 @@ export default function ElSlider({ min, max, value, onChange }) {
     return (
         <Box p={2}>
             <Flex onLayout={onLayout} h={8} justify="center">
-                <Flex h={1} bgColor={colors.light}></Flex>
+                <Flex h={1} bgColor='gray.200'></Flex>
                 <Slider
                     max={max}
                     value={value[0]}
@@ -127,7 +126,7 @@ const styles = StyleSheet.create({
         borderWidth: 4,
         borderRadius: 15,
         backgroundColor: 'white',
-        borderColor: colors.secondary,
+        borderColor: 'red',
         display: 'flex',
         alignItems: 'center',
     },
