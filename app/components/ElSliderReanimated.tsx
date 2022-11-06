@@ -12,8 +12,8 @@ import Animated, {
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
 const Thumb = ({ min, max, value, onChange, containerWidth }) => {
-    const position = useSharedValue({ x: 0, y: 0 });
-    const start = useSharedValue({ x: 0, y: 0 });
+    const position = useSharedValue({ x: 0 });
+    const start = useSharedValue({ x: 0 });
 
     const maxValue = useRef<number>(max);
     const minValue = useRef<number>(min);
@@ -56,14 +56,12 @@ const Thumb = ({ min, max, value, onChange, containerWidth }) => {
         .onUpdate(e => {
             position.value = {
                 x: e.translationX + start.value.x,
-                y: e.translationY + start.value.y,
             };
             runOnJS(updateTempValueWhenPan)();
         })
         .onEnd(() => {
             start.value = {
                 x: position.value.x,
-                y: position.value.y,
             };
             runOnJS(updateValueAfterPanEnd)();
         });
