@@ -5,6 +5,7 @@ import ElAnimated from '../components/ElAnimated';
 import ElAnimatedEventPan from '../components/ElAnimatedEventPan';
 import ElAnimatedEventScrollX from '../components/ElAnimatedEventScrollX';
 import ElList from '../components/ElList';
+import ElPinchImage from '../components/ElPinchImage';
 import ElSlider from '../components/ElSlider';
 import { useNotifications } from '../hooks/useNotifications';
 
@@ -20,7 +21,7 @@ export default function PostScreen({ navigation }) {
 
   return (
     <>
-      <Box mt={4}>
+      {/* <Box mt={4}>
         <Text>{range[0]}</Text>
         <Text>{range[1]}</Text>
       </Box>
@@ -28,7 +29,8 @@ export default function PostScreen({ navigation }) {
         <ElSlider min={min} max={max} value={range} onChange={setRange} />
       </Box>
 
-      <Button onPress={() => setMax(100)}>Change</Button>
+      <Button onPress={() => setMax(100)}>Change</Button> */}
+      <ElPinchImage />
     </>
   );
 }
