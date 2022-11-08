@@ -72,29 +72,27 @@ export default function ElPinchImage() {
         onGestureEvent={onRotateGestureEvent}
         onHandlerStateChange={onRotateHandlerStateChange}
       >
-        <Animated.View>
+        <Animated.View style={styles.container} collapsable={false}>
           <PinchGestureHandler
             ref={imagePinch}
             simultaneousHandlers={imageRotation}
             onGestureEvent={onPinchGestureEvent}
             onHandlerStateChange={onPinchHandlerStateChange}
           >
-            <Animated.View style={styles.container} collapsable={false}>
-              <Animated.Image
-                style={[
-                  styles.pinchableImage,
-                  {
-                    transform: [
-                      { perspective: 200 },
-                      { scale: scale },
-                      { rotate: rotateStr },
-                      { rotateX: tiltStr },
-                    ],
-                  },
-                ]}
-                source={require('./mario-av.png')}
-              />
-            </Animated.View>
+            <Animated.Image
+              style={[
+                styles.pinchableImage,
+                {
+                  transform: [
+                    { perspective: 200 },
+                    { scale: scale },
+                    { rotate: rotateStr },
+                    { rotateX: tiltStr },
+                  ],
+                },
+              ]}
+              source={require('./mario-av.png')}
+            />
           </PinchGestureHandler>
         </Animated.View>
       </RotationGestureHandler>

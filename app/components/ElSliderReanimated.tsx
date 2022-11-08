@@ -19,22 +19,19 @@ const Thumb = ({ min, max, value, onChange, containerWidth }) => {
     const minValue = useRef<number>(min);
     const [tempValue, setTempValue] = useState<any>(value);
 
-    const calPos = v => {
-        if (!max) return 0;
-        return (containerWidth / max) * v;
-    };
-    const calValue = (pos: any) => {
-        const newValue = Math.floor((maxValue.current / 256) * pos);
-
-        if (newValue < minValue.current) return minValue;
-        if (newValue > maxValue.current) return maxValue;
-
-        return newValue;
-    };
-
     useEffect(() => {
-        position.value.x = calPos(value);
+        initPosition();
     }, [containerWidth, max]);
+
+    const initPosition = () => {
+        if (!max) return 0;
+
+        position.value = {
+            x: (containerWidth / max) * value,
+        };
+    };
+
+    const getValueByPosition = (pos: any) => Math.round((maxValue.current / containerWidth) * pos);
 
     useEffect(() => {
         maxValue.current = max;
@@ -45,17 +42,20 @@ const Thumb = ({ min, max, value, onChange, containerWidth }) => {
     }, [min]);
 
     const updateTempValueWhenPan = () => {
-        setTempValue(calValue(position.value.x));
+        setTempValue(getValueByPosition(position.value.x));
     };
 
     const updateValueAfterPanEnd = () => {
-        onChange(calValue(position.value.x));
+        onChange(getValueByPosition(position.value.x));
     };
 
     const gesture = Gesture.Pan()
         .onUpdate(e => {
+            let thumbPosition = e.translationX + start.value.x;
+            if (thumbPosition < 0) thumbPosition = 0;
+            if (thumbPosition > containerWidth) thumbPosition = containerWidth;
             position.value = {
-                x: e.translationX + start.value.x,
+                x: thumbPosition,
             };
             runOnJS(updateTempValueWhenPan)();
         })
@@ -67,7 +67,7 @@ const Thumb = ({ min, max, value, onChange, containerWidth }) => {
         });
 
     const animatedStyles = useAnimatedStyle(() => {
-        const translateX = interpolate(position.value.x, [0, 256], [0, 256], {
+        const translateX = interpolate(position.value.x, [0, containerWidth], [0, containerWidth], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
@@ -114,7 +114,7 @@ export default function ElSlider({ min, max, value, onChange }) {
     };
 
     return (
-        <Box p={2} mt={2}>
+        <Box mt={2}>
             <Flex onLayout={onLayout} h={8} justify="center">
                 <Flex h={1} bgColor={colors.light}></Flex>
                 <Thumb
