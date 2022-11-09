@@ -96,7 +96,7 @@ const Thumb = ({ min, max, value, onChange, containerWidth }) => {
   );
 };
 
-export default function ElSlider({ min, max, value, onChange }) {
+export default function ElSlider({ min, max, value, onChange, ...rest }) {
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const thumb1 = useRef<number>(value[0]);
   const thumb2 = useRef<number>(value[1]);
@@ -122,9 +122,9 @@ export default function ElSlider({ min, max, value, onChange }) {
   };
 
   return (
-    <Box mt={2}>
+    <Box {...rest}>
       <Flex onLayout={onLayout} h={8} justify='center'>
-        <Flex h={1} bgColor={colors.light}></Flex>
+        <Flex h={StyleSheet.hairlineWidth} bgColor={colors.primary}></Flex>
         <Thumb
           min={min}
           max={max}
